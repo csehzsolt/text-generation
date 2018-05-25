@@ -8,25 +8,18 @@ from keras.utils import np_utils
 
 from src.text import Text
 
+seq_length = 100
+
 def train():
-    text = Text()
+    text = Text(seq_length)
 
-    # summerize the dataset
-    n_chars = len(text.raw_text)
-    n_vocab = len(text.chars)
-    print('total characters: ', n_chars)
-    print('total vocab: ', n_vocab)
-
-    # prepare the dataset of input to output pairs encoded as integers
-    seq_length = 100
-    dataX, dataY = text.get_prepared_data(seq_length)
-    n_patterns = len(dataX)
-    print('total patterns: ', n_patterns)
+    dataX = text.dataX
+    dataY = text.dataY
 
     # reshape X to be [samples, timesteps, features]
-    X = numpy.reshape(dataX, (n_patterns, seq_length, 1))
+    X = numpy.reshape(dataX, (len(dataX), seq_length, 1))
     # normalize
-    X = X / float(n_vocab)
+    X = X / float(len(text.chars))
     # one hot encode the output variable
     y = np_utils.to_categorical(dataY)
 
