@@ -7,17 +7,18 @@ from keras.models import load_model
 from src.text import Text
 
 checkpoint_path = 'checkpoints'
-filename = 'weights-improvement-02-2.7863.hdf5'
+filename = 'weights-improvement-04-2.3871.hdf5'
+
+seq_length = 100
 
 def generate():
-    text = Text()
+    text = Text(seq_length)
 
     # load the network weights
     model = load_model(os.path.join(checkpoint_path, filename))
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-    seq_length = 100
-    dataX = text.get_prepared_data(seq_length)[0]
+    dataX = text.dataX
     int_to_char = text.int_to_char
     # pick a random seed
     start = numpy.random.randint(0, len(dataX) - 1)

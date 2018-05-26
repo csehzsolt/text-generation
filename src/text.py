@@ -1,7 +1,8 @@
 import os.path
+from functools import reduce
 
 res_path = 'res'
-filename = 'wonderland.txt'
+filename = 'piszkos_fred.txt'
 
 class Text:
 
@@ -29,7 +30,8 @@ class Text:
     def __log(self):
         '''Log metadata about the loaded text.'''
         print('total characters: ', len(self.raw_text))
-        print('total vocab: ', len(self.chars))
+        print('total vocabulary: ', len(self.chars))
         print('total patterns: ', len(self.dataX))
 
-Text(100)
+        vocabulary = reduce(lambda x, y: x+y, self.chars, '')
+        print('vocabulary: ', repr(vocabulary)[1:-1])
