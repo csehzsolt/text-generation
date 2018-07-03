@@ -10,6 +10,7 @@ checkpoint_path = 'checkpoints'
 filename = 'weights-improvement-04-2.3871.hdf5'
 
 seq_length = 100
+number_of_predicted_characters = 500
 
 def generate():
     text = Text(seq_length)
@@ -27,7 +28,7 @@ def generate():
     print(''.join([int_to_char[value] for value in pattern]))
 
     # generate characters
-    for i in range (1000):
+    for i in range (number_of_predicted_characters):
         x = numpy.reshape(pattern, (1, len(pattern), 1))
         x = x / float(len(text.chars))
         prediction = model.predict(x, verbose=0)
