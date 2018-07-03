@@ -25,7 +25,7 @@ def train():
 
     # define the LSTM model
     model = Sequential()
-    model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
+    model.add(LSTM(512, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
     model.add(Dropout(0.2))
     model.add(LSTM(256))
     model.add(Dropout(0.2))
@@ -37,4 +37,4 @@ def train():
     checkpoint = ModelCheckpoint(checkpoint_path, monitor='loss', verbose=1, save_best_only=True, mode='min')
     callback_list = [checkpoint]
 
-    model.fit(X, y, epochs=20, batch_size=128, callbacks=callback_list)
+    model.fit(X, y, epochs=100, batch_size=64, callbacks=callback_list)
