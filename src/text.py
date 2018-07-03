@@ -7,7 +7,7 @@ filename = 'piszkos_fred.txt'
 class Text:
 
     def __init__(self, seq_length):
-        self.raw_text = open(os.path.join(res_path, filename)).read().lower()
+        self.raw_text = open(os.path.join(res_path, filename), encoding='utf8').read().lower()
         self.chars = sorted(list(set(self.raw_text)))
         self.char_to_int = dict((c, i) for i, c in enumerate(self.chars))
         self.int_to_char = dict((i, c) for i, c in enumerate(self.chars))
