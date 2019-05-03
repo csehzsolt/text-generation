@@ -10,18 +10,19 @@ from src.text import Text
 
 seq_length = 100
 
+
 def train():
     text = Text(seq_length)
 
-    dataX = text.dataX
-    dataY = text.dataY
+    data_x = text.dataX
+    data_y = text.dataY
 
     # reshape X to be [samples, timesteps, features]
-    X = numpy.reshape(dataX, (len(dataX), seq_length, 1))
+    X = numpy.reshape(data_x, (len(data_x), seq_length, 1))
     # normalize
     X = X / float(len(text.chars))
     # one hot encode the output variable
-    y = np_utils.to_categorical(dataY)
+    y = np_utils.to_categorical(data_y)
 
     # define the LSTM model
     model = Sequential()
